@@ -1,0 +1,21 @@
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--navy);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow2);
+}
+
+.theme-toggle:hover {
+  background: var(--blue-light);
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: scale(1.05);
+}

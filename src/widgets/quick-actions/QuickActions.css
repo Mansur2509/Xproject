@@ -1,0 +1,58 @@
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius2);
+  text-decoration: none;
+  color: var(--navy);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow2);
+}
+
+.action-card:hover {
+  border-color: var(--action-color);
+  background: var(--blue-light);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.action-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  background: var(--action-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .action-card {
+    padding: 20px;
+  }
+}

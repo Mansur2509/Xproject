@@ -1,0 +1,1 @@
+export { TeamPreview } from './TeamPreview';
