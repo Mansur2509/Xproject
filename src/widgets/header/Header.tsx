@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@entities/user/model/userStore';
 import { ThemeToggle } from '@widgets/theme-toggle';
 import { LanguageSelector } from '@widgets/language-selector';
-import { t } from '@shared/lib/i18n';
+import { t, useI18nStore } from '@shared/lib/i18n';
 import './Header.css';
 
 export const Header = () => {
@@ -12,6 +12,7 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isAuthenticated, user, logout } = useUserStore();
   const navigate = useNavigate();
+  const { language } = useI18nStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,12 +73,13 @@ export const Header = () => {
           </Link>
 
           <nav className="nav-links" aria-label="Навигация">
-            <Link to="/about">{t('nav.about')}</Link>
-            <Link to="/events">{t('nav.events')}</Link>
-            <Link to="/team">{t('nav.team')}</Link>
-            <Link to="/contact">{t('nav.contact')}</Link>
-            <Link to="/pricing">{t('nav.pricing')}</Link>
-            <Link to="/qr">QR</Link>
+            <Link to="/about">{t('nav.about', language)}</Link>
+            <Link to="/events">{t('nav.events', language)}</Link>
+            <Link to="/team">{t('nav.team', language)}</Link>
+            <Link to="/contact">{t('nav.contact', language)}</Link>
+            <Link to="/pricing">{t('nav.pricing', language)}</Link>
+            <Link to="/roadmap">{t('nav.roadmap', language)}</Link>
+            <Link to="/qr">{t('nav.qr', language)}</Link>
           </nav>
 
           <div className="nav-cta">
@@ -86,19 +88,19 @@ export const Header = () => {
             {isAuthenticated ? (
               <>
                 <Link to="/dashboard" className="btn">
-                  {user?.name || t('nav.dashboard')}
+                  {user?.name || t('nav.dashboard', language)}
                 </Link>
                 <button className="btn" onClick={handleLogout}>
-                  {t('nav.logout')}
+                  {t('nav.logout', language)}
                 </button>
               </>
             ) : (
               <>
                 <Link to="/auth/login" className="btn">
-                  {t('nav.login')}
+                  {t('nav.login', language)}
                 </Link>
                 <Link to="/auth/register" className="btn primary">
-                  {t('nav.register')}
+                  {t('nav.register', language)}
                 </Link>
               </>
             )}
@@ -135,7 +137,13 @@ export const Header = () => {
                 <div className="drawer-title">
                   <span className="logo-badge" style={{ width: '40px', height: '40px' }}>
                     <svg viewBox="0 0 64 64">
-                      <circle cx="32" cy="32" r="29" fill="none" stroke="#1e66b3" strokeWidth="4" />
+                      <defs>
+                        <linearGradient id="g-drawer" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0" stopColor="var(--blue)" />
+                          <stop offset="1" stopColor="var(--blue2)" />
+                        </linearGradient>
+                      </defs>
+                      <circle cx="32" cy="32" r="29" fill="none" stroke="url(#g-drawer)" strokeWidth="4" />
                     </svg>
                   </span>
                   <span>Admisstion triper</span>
@@ -158,19 +166,27 @@ export const Header = () => {
 
               <nav className="drawer-links">
                 <Link to="/about" onClick={() => setIsMenuOpen(false)}>
-                  <span>О нас</span>
+                  <span>{t('nav.about', language)}</span>
                   <span style={{ opacity: 0.65 }}>›</span>
                 </Link>
                 <Link to="/events" onClick={() => setIsMenuOpen(false)}>
-                  <span>Ивенты</span>
+                  <span>{t('nav.events', language)}</span>
                   <span style={{ opacity: 0.65 }}>›</span>
                 </Link>
                 <Link to="/team" onClick={() => setIsMenuOpen(false)}>
-                  <span>Команда</span>
+                  <span>{t('nav.team', language)}</span>
                   <span style={{ opacity: 0.65 }}>›</span>
                 </Link>
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  <span>Контакты</span>
+                  <span>{t('nav.contact', language)}</span>
+                  <span style={{ opacity: 0.65 }}>›</span>
+                </Link>
+                <Link to="/roadmap" onClick={() => setIsMenuOpen(false)}>
+                  <span>{t('nav.roadmap', language)}</span>
+                  <span style={{ opacity: 0.65 }}>›</span>
+                </Link>
+                <Link to="/qr" onClick={() => setIsMenuOpen(false)}>
+                  <span>{t('nav.qr', language)}</span>
                   <span style={{ opacity: 0.65 }}>›</span>
                 </Link>
               </nav>

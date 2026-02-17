@@ -17,8 +17,8 @@ export const ProgressChart = () => {
         <AreaChart data={data}>
           <defs>
             <linearGradient id="colorProgress" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              <stop offset="5%" stopColor="var(--blue2)" stopOpacity={0.35} />
+              <stop offset="95%" stopColor="var(--blue2)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--line)" />
@@ -34,7 +34,7 @@ export const ProgressChart = () => {
           <Area
             type="monotone"
             dataKey="progress"
-            stroke="#3b82f6"
+            stroke="var(--blue)"
             strokeWidth={3}
             fill="url(#colorProgress)"
           />

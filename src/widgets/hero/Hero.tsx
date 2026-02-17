@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useUserStore } from '@entities/user/model/userStore';
+import { t, useI18nStore } from '@shared/lib/i18n';
 import './Hero.css';
 
 export const Hero = () => {
   const { isAuthenticated } = useUserStore();
+  const { language } = useI18nStore();
 
   return (
     <section className="hero">
@@ -16,26 +18,23 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
           >
             <span className="pill">
-              <span className="dot"></span> Admisstion triper — комьюнити и практика для поступления
+              <span className="dot"></span> {t('hero.badge', language)}
             </span>
-            <h1>Учись. Выступай. Создавай.</h1>
-            <p className="lead">
-              Мы проводим крупные дебатные турниры, MUN и образовательные тренинги. А еще —
-              менторим по IELTS, SAT и поступлению.
-            </p>
+            <h1>{t('hero.title', language)}</h1>
+            <p className="lead">{t('hero.lead', language)}</p>
 
             <div className="hero-actions">
               {isAuthenticated ? (
                 <Link to="/dashboard" className="btn primary">
-                  Перейти в профиль
+                  {t('dashboard.profile', language)}
                 </Link>
               ) : (
                 <>
                   <Link to="/auth/register" className="btn primary">
-                    Присоединиться
+                  {t('hero.cta.primary', language)}
                   </Link>
                   <Link to="/events" className="btn">
-                    Наши ивенты
+                  {t('hero.cta.secondary', language)}
                   </Link>
                 </>
               )}

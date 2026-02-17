@@ -16,8 +16,6 @@ export const LanguageSelector = () => {
   const handleSelect = (lang: Language) => {
     setLanguage(lang);
     setIsOpen(false);
-    // Перезагружаем страницу для применения переводов
-    setTimeout(() => window.location.reload(), 100);
   };
 
   const currentLanguage = languages.find((l) => l.code === language) || languages[0];

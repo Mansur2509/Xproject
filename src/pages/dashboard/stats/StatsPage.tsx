@@ -14,9 +14,9 @@ const studyData = [
 ];
 
 const categoryData = [
-  { name: 'IELTS', value: 45, color: '#3b82f6' },
-  { name: 'SAT', value: 30, color: '#8b5cf6' },
-  { name: 'Admissions', value: 25, color: '#10b981' },
+  { name: 'IELTS', value: 45, color: 'var(--blue)' },
+  { name: 'SAT', value: 30, color: 'var(--purple)' },
+  { name: 'Admissions', value: 25, color: 'var(--green)' },
 ];
 
 export const StatsPage = () => {
@@ -55,7 +55,7 @@ export const StatsPage = () => {
                     borderRadius: 'var(--radius)',
                   }}
                 />
-                <Bar dataKey="hours" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+                <Bar dataKey="hours" fill="var(--blue)" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </motion.div>

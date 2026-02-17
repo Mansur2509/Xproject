@@ -1,6 +1,6 @@
 .events-page {
   padding: 60px 0;
-  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  background: var(--bg);
 }
 
 .events-grid {

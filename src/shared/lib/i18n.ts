@@ -21,6 +21,8 @@ export const translations: Translations = {
   'nav.team': { ru: 'Команда', en: 'Team', uz: 'Jamoa' },
   'nav.contact': { ru: 'Контакты', en: 'Contact', uz: 'Aloqa' },
   'nav.pricing': { ru: 'Тарифы', en: 'Pricing', uz: 'Narxlar' },
+  'nav.roadmap': { ru: 'Роадмапа', en: 'Roadmap', uz: "Yo'nalish xaritasi" },
+  'nav.qr': { ru: 'QR генератор', en: 'QR generator', uz: 'QR generator' },
   'nav.login': { ru: 'Войти', en: 'Login', uz: 'Kirish' },
   'nav.register': { ru: 'Регистрация', en: 'Register', uz: "Ro'yxatdan o'tish" },
   'nav.dashboard': { ru: 'Дашборд', en: 'Dashboard', uz: 'Boshqaruv paneli' },
@@ -44,6 +46,33 @@ export const translations: Translations = {
   'common.next': { ru: 'Далее', en: 'Next', uz: 'Keyingi' },
   'common.back': { ru: 'Назад', en: 'Back', uz: 'Orqaga' },
   'common.complete': { ru: 'Завершить', en: 'Complete', uz: 'Yakunlash' },
+
+  // Hero
+  'hero.badge': {
+    ru: 'Admisstion triper — комьюнити и практика для поступления',
+    en: 'Admisstion triper — community and practice for admissions',
+    uz: 'Admisstion triper — qabul uchun komyunitiy va amaliyot',
+  },
+  'hero.title': {
+    ru: 'Учись. Выступай. Создавай.',
+    en: 'Learn. Speak. Create.',
+    uz: "O'qiyver. Nutq so'zla. Yarat.",
+  },
+  'hero.lead': {
+    ru: 'Мы проводим крупные дебатные турниры, MUN и образовательные тренинги. А еще — менторим по IELTS, SAT и поступлению.',
+    en: 'We run debate tournaments, MUN conferences and educational trainings — plus mentoring for IELTS, SAT and admissions.',
+    uz: 'Biz debat turnirlari, MUN konferensiyalari va taʼlim treninglarini tashkil qilamiz, shuningdek IELTS, SAT va qabul bo‘yicha mentorlik qilamiz.',
+  },
+  'hero.cta.primary': {
+    ru: 'Присоединиться',
+    en: 'Join now',
+    uz: "Qo'shilish",
+  },
+  'hero.cta.secondary': {
+    ru: 'Наши ивенты',
+    en: 'Our events',
+    uz: 'Tadbirlarimiz',
+  },
 };
 
 interface I18nState {
