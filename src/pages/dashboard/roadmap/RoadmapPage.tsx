@@ -10,22 +10,15 @@ const courseCategories = [
     id: 'SAT',
     title: 'SAT Preparation',
     description: 'Подготовка к экзамену SAT',
-    color: 'var(--purple)',
-    courses: ['sat-math', 'sat-reading', 'sat-writing'],
+    color: 'var(--blue)',
+    courses: ['sat-bluebook-drills', 'sat-math', 'sat-reading', 'sat-writing'],
   },
   {
     id: 'IELTS',
     title: 'IELTS Preparation',
     description: 'Подготовка к экзамену IELTS',
-    color: 'var(--blue)',
+    color: 'var(--blue2)',
     courses: ['ielts-writing', 'ielts-speaking', 'ielts-reading'],
-  },
-  {
-    id: 'ESSAY',
-    title: 'Essay Writing',
-    description: 'Написание эссе для поступления',
-    color: 'var(--green)',
-    courses: ['essay-writing', 'motivation-letter'],
   },
 ];
 

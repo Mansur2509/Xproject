@@ -14,7 +14,7 @@ export const AboutSection = () => {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h2>О XProjectUZ</h2>
+            <h2>О Admisstion triper</h2>
             <p>
               Мы превращаем подготовку к поступлению в понятную систему: действия → результаты →
               сильное портфолио.
@@ -44,7 +44,7 @@ export const AboutSection = () => {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M12 2l2.8 6.2 6.2.6-4.7 4.1 1.4 6.1L12 16.9 6.3 19l1.4-6.1L3 8.8l6.2-.6L12 2z"
-                    stroke="#1e66b3"
+                    stroke="var(--blue)"
                     strokeWidth="2"
                   />
                 </svg>
@@ -57,7 +57,7 @@ export const AboutSection = () => {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M4 7h16M4 12h16M4 17h10"
-                    stroke="#0f2a44"
+                    stroke="var(--navy)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     opacity="0.85"
@@ -72,7 +72,7 @@ export const AboutSection = () => {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M12 21s-7-4.2-7-10V6l7-3 7 3v5c0 5.8-7 10-7 10z"
-                    stroke="#0f2a44"
+                    stroke="var(--navy)"
                     strokeWidth="2"
                     opacity="0.85"
                   />
@@ -96,11 +96,11 @@ export const AboutSection = () => {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M4 19V6a2 2 0 0 1 2-2h11a3 3 0 0 1 3 3v12"
-                  stroke="#0f2a44"
+                  stroke="var(--navy)"
                   strokeWidth="2"
                   opacity="0.9"
                 />
-                <path d="M6 18h13" stroke="#1e66b3" strokeWidth="2.4" strokeLinecap="round" />
+                <path d="M6 18h13" stroke="var(--blue)" strokeWidth="2.4" strokeLinecap="round" />
               </svg>
             </div>
             <h3>Что внутри</h3>

@@ -37,8 +37,236 @@ export interface Course {
 
 const COURSES_KEY = 'courses_data';
 
+const mergeCourses = (saved: Course[], nextInitial: Course[]) => {
+  const savedMap = new Map(saved.map((c) => [c.id, c]));
+  const merged = [...saved];
+
+  for (const course of nextInitial) {
+    if (!savedMap.has(course.id)) {
+      merged.push(course);
+    }
+  }
+
+  return merged;
+};
+
 // Начальные данные курсов
 const initialCourses: Course[] = [
+  {
+    id: 'sat-bluebook-drills',
+    title: 'SAT (Bluebook-style) — Practice Drills',
+    description: '5 коротких уроков с заданиями в формате “как в Bluebook”: варианты + проверка + решения',
+    category: 'SAT',
+    level: 'intermediate',
+    duration: 5,
+    progress: 0,
+    enrolled: false,
+    lessons: [
+      {
+        id: 'sat-bb-1',
+        title: 'Урок 1: Линейные уравнения и системы',
+        description: '3 задания + 2 способа решения там, где это уместно',
+        duration: 25,
+        order: 1,
+        completed: false,
+        content:
+          '<h2>Цель урока</h2><p>Отработать базовые “быстрые” темы SAT: линейные уравнения и простые системы. Делай упор на скорость и аккуратность.</p><h3>Правило</h3><p>Перед тем как считать, упростите выражение и проверьте знаки/скобки.</p>',
+        exercises: [
+          {
+            id: 'sat-bb-1-q1',
+            type: 'multiple-choice',
+            question: 'Решите уравнение: 3(x − 2) = 15. Чему равно x?',
+            options: ['3', '5', '7', '9'],
+            correctAnswer: '7',
+            explanation:
+              '<p><b>Способ 1 (раскрыть скобки):</b> 3x − 6 = 15 ⇒ 3x = 21 ⇒ x = 7.</p><p><b>Способ 2 (сначала разделить):</b> x − 2 = 5 ⇒ x = 7.</p><p><b>Проверка:</b> 3(7 − 2) = 3·5 = 15.</p>',
+          },
+          {
+            id: 'sat-bb-1-q2',
+            type: 'multiple-choice',
+            question: 'Если f(x) = 2x + 3, то чему равно f(4)?',
+            options: ['8', '10', '11', '14'],
+            correctAnswer: '11',
+            explanation:
+              '<p>Подставляем x = 4: f(4) = 2·4 + 3 = 8 + 3 = 11.</p><p><b>Лайфхак:</b> сначала удвоить 4, затем прибавить 3.</p>',
+          },
+          {
+            id: 'sat-bb-1-q3',
+            type: 'multiple-choice',
+            question: 'Решите систему: x + y = 10 и x − y = 2. Чему равно x?',
+            options: ['4', '5', '6', '8'],
+            correctAnswer: '6',
+            explanation:
+              '<p><b>Способ 1 (сложить уравнения):</b> (x+y)+(x−y)=10+2 ⇒ 2x=12 ⇒ x=6.</p><p><b>Способ 2 (выразить y):</b> y = 10 − x, подставить: x − (10 − x) = 2 ⇒ 2x = 12 ⇒ x = 6.</p>',
+          },
+        ],
+      },
+      {
+        id: 'sat-bb-2',
+        title: 'Урок 2: Проценты и отношения',
+        description: '3 задания на проценты, скидки и пропорции',
+        duration: 25,
+        order: 2,
+        completed: false,
+        content:
+          '<h2>Цель урока</h2><p>На SAT проценты часто “маскируются” под реальную ситуацию. Держи в голове: процент = доля от 100.</p><h3>Шаблоны</h3><ul><li><b>p% от числа N</b> = (p/100)·N</li><li><b>Увеличить на p%</b> = N·(1 + p/100)</li><li><b>Уменьшить на p%</b> = N·(1 − p/100)</li></ul>',
+        exercises: [
+          {
+            id: 'sat-bb-2-q1',
+            type: 'multiple-choice',
+            question: 'Цена была 80, затем сделали скидку 25%. Какова новая цена?',
+            options: ['55', '60', '65', '70'],
+            correctAnswer: '60',
+            explanation:
+              '<p>Скидка 25% означает, что остаётся 75%: 80·0.75 = 60.</p><p><b>Альтернатива:</b> 25% от 80 — это 20, значит 80−20=60.</p>',
+          },
+          {
+            id: 'sat-bb-2-q2',
+            type: 'multiple-choice',
+            question: 'Если 30% числа равно 18, то чему равно число?',
+            options: ['50', '54', '60', '72'],
+            correctAnswer: '60',
+            explanation:
+              '<p>0.30·N = 18 ⇒ N = 18 / 0.30 = 60.</p><p><b>Быстро:</b> 30% — это 3/10, значит N = 18·(10/3)=60.</p>',
+          },
+          {
+            id: 'sat-bb-2-q3',
+            type: 'multiple-choice',
+            question: 'Отношение A:B = 3:5. Если A = 24, то чему равно B?',
+            options: ['32', '36', '40', '48'],
+            correctAnswer: '40',
+            explanation:
+              '<p>3 части соответствуют 24 ⇒ 1 часть = 8 ⇒ 5 частей = 40.</p>',
+          },
+        ],
+      },
+      {
+        id: 'sat-bb-3',
+        title: 'Урок 3: Writing — грамматика и связки',
+        description: '3 задания: пунктуация, согласование, логика связок',
+        duration: 25,
+        order: 3,
+        completed: false,
+        content:
+          '<h2>Цель урока</h2><p>Отработать типичные “быстрые” вопросы SAT Writing: согласование подлежащего и сказуемого, логичные связки, пунктуация.</p><h3>Подсказка</h3><p>Сначала найди основу предложения (подлежащее + сказуемое), потом проверяй лишние слова.</p>',
+        exercises: [
+          {
+            id: 'sat-bb-3-q1',
+            type: 'multiple-choice',
+            question:
+              'Выберите вариант, который лучше всего завершает предложение:\n\n“The list of items ___ on the table.”',
+            options: ['are', 'is', 'were', 'be'],
+            correctAnswer: 'is',
+            explanation:
+              '<p>Подлежащее — <b>list</b> (ед. число), поэтому глагол тоже в ед. числе: <b>is</b>.</p><p><b>Ловушка:</b> “of items” не меняет число подлежащего.</p>',
+          },
+          {
+            id: 'sat-bb-3-q2',
+            type: 'multiple-choice',
+            question:
+              'Выберите самую логичную связку:\n\n“I wanted to study earlier; ___, my internet was down.”',
+            options: ['therefore', 'however', 'for example', 'in addition'],
+            correctAnswer: 'however',
+            explanation:
+              '<p>Здесь контраст: хотел учиться, <b>однако</b> интернет не работал. Поэтому подходит <b>however</b>.</p>',
+          },
+          {
+            id: 'sat-bb-3-q3',
+            type: 'multiple-choice',
+            question:
+              'Выберите правильный вариант пунктуации:\n\n“My brother loves cooking ___ he often experiments with new recipes.”',
+            options: [', and', '; therefore', ': which', ', however'],
+            correctAnswer: ', and',
+            explanation:
+              '<p>Две независимые части можно соединить “, and” (запятая + союз). Остальные варианты либо меняют смысл, либо грамматически не подходят.</p>',
+          },
+        ],
+      },
+      {
+        id: 'ielts-bb-4',
+        title: 'Урок 4: IELTS Writing Task 2 — тезис и аргументы',
+        description: '2 задания + шаблон структуры + мини-пример',
+        duration: 25,
+        order: 4,
+        completed: false,
+        content:
+          '<h2>Цель урока</h2><p>Собрать сильное введение: перефраз + тезис + план. Дальше — topic sentences в body.</p><h3>Шаблон введения (2–3 предложения)</h3><ol><li>Перефразируй тему</li><li>Чётко обозначь позицию</li><li>Дай план: 2 причины / 2 аспекта</li></ol>',
+        exercises: [
+          {
+            id: 'ielts-bb-4-q1',
+            type: 'multiple-choice',
+            question:
+              'Какой тезис (thesis statement) самый сильный и понятный для IELTS Task 2?\n\nТема: “Some people think online education will replace traditional classrooms.”',
+            options: [
+              'Online education is good.',
+              'Although online education is growing, I believe traditional classrooms will remain essential because they provide real-time interaction and structured support.',
+              'Many people have different opinions about online education.',
+              'Online education will definitely replace classrooms in the future.',
+            ],
+            correctAnswer:
+              'Although online education is growing, I believe traditional classrooms will remain essential because they provide real-time interaction and structured support.',
+            explanation:
+              '<p>Сильный тезис: <b>позиция + 2 причины</b>. Здесь есть контраст (“Although…”), чёткая позиция и два аргумента.</p>',
+          },
+          {
+            id: 'ielts-bb-4-q2',
+            type: 'multiple-choice',
+            question:
+              'Выберите лучший topic sentence для первого body paragraph (поддерживает тезис про “real-time interaction”):',
+            options: [
+              'First, interaction is important in many situations.',
+              'One major advantage of traditional classrooms is that students can ask questions immediately and receive instant feedback.',
+              'Traditional classrooms have teachers and students.',
+              'In conclusion, classrooms are useful.',
+            ],
+            correctAnswer:
+              'One major advantage of traditional classrooms is that students can ask questions immediately and receive instant feedback.',
+            explanation:
+              '<p>Хороший topic sentence: конкретный, по теме абзаца, и сразу даёт направление аргумента.</p>',
+          },
+        ],
+      },
+      {
+        id: 'ielts-bb-5',
+        title: 'Урок 5: IELTS Reading — True/False/Not Given',
+        description: '3 задания + стратегия “ищем точный факт”',
+        duration: 25,
+        order: 5,
+        completed: false,
+        content:
+          '<h2>Цель урока</h2><p>Отличать <b>False</b> от <b>Not Given</b>. Если в тексте нет информации — это Not Given, даже если “кажется логичным”.</p><h3>Стратегия</h3><ul><li>Найди ключевые слова в утверждении</li><li>Найди место в тексте</li><li>Сравни смысл: совпадает / противоречит / отсутствует</li></ul><h3>Мини-текст</h3><p><i>“The city library expanded its opening hours last year. It now stays open until 9 p.m. on weekdays. According to the director, the change was made to support working adults.”</i></p>',
+        exercises: [
+          {
+            id: 'ielts-bb-5-q1',
+            type: 'multiple-choice',
+            question: 'Утверждение: “The library closes at 9 p.m. on Saturdays.”',
+            options: ['True', 'False', 'Not Given'],
+            correctAnswer: 'Not Given',
+            explanation:
+              '<p>В тексте сказано только про <b>weekdays</b> (будни). Про субботу информации нет ⇒ <b>Not Given</b>.</p>',
+          },
+          {
+            id: 'ielts-bb-5-q2',
+            type: 'multiple-choice',
+            question: 'Утверждение: “The library changed its schedule to help working adults.”',
+            options: ['True', 'False', 'Not Given'],
+            correctAnswer: 'True',
+            explanation:
+              '<p>Прямо сказано: “the change was made to support working adults” ⇒ <b>True</b>.</p>',
+          },
+          {
+            id: 'ielts-bb-5-q3',
+            type: 'multiple-choice',
+            question: 'Утверждение: “The director personally requested the opening hours expansion.”',
+            options: ['True', 'False', 'Not Given'],
+            correctAnswer: 'Not Given',
+            explanation:
+              '<p>Директор упомянут как источник (“According to the director”), но нет информации, что это была его личная просьба ⇒ <b>Not Given</b>.</p>',
+          },
+        ],
+      },
+    ],
+  },
   {
     id: 'sat-math',
     title: 'SAT Math Preparation',
@@ -284,7 +512,10 @@ interface CourseState {
 export const useCourseStore = create<CourseState>((set, get) => {
   // Загружаем курсы из localStorage или используем начальные
   const savedCourses = storage.get<Course[]>(COURSES_KEY);
-  const courses = savedCourses || initialCourses;
+  const courses = savedCourses ? mergeCourses(savedCourses, initialCourses) : initialCourses;
+  if (savedCourses) {
+    storage.set(COURSES_KEY, courses);
+  }
 
   return {
     courses,

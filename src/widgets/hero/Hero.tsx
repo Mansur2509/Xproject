@@ -16,7 +16,7 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
           >
             <span className="pill">
-              <span className="dot"></span> XProjectUZ — комьюнити и практика для поступления
+              <span className="dot"></span> Admisstion triper — комьюнити и практика для поступления
             </span>
             <h1>Учись. Выступай. Создавай.</h1>
             <p className="lead">
@@ -45,13 +45,13 @@ export const Hero = () => {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M12 22s8-4.5 8-11V6l-8-3-8 3v5c0 6.5 8 11 8 11z"
-                  stroke="#0f2a44"
+                  stroke="var(--navy)"
                   strokeWidth="2"
                   opacity="0.85"
                 />
                 <path
                   d="M8.5 12.2l2.4 2.4 4.8-5"
-                  stroke="#1e66b3"
+                  stroke="var(--blue)"
                   strokeWidth="2.4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -69,15 +69,15 @@ export const Hero = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            aria-label="Статистика XProjectUZ"
+            aria-label="Статистика Admisstion triper"
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
               <div>
                 <b style={{ display: 'block', fontSize: '16px', color: 'var(--navy)' }}>
-                  Что дает XProjectUZ
+                  Что дает Admisstion triper
                 </b>
                 <span style={{ color: 'var(--muted)', fontSize: '12px', fontWeight: 700 }}>
-                  бело-синяя айдентика
+                  бордовая айдентика
                 </span>
               </div>
               <span className="pill" style={{ padding: '6px 10px' }}>
@@ -108,14 +108,14 @@ export const Hero = () => {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M7 11l5-5 5 5"
-                  stroke="#1e66b3"
+                  stroke="var(--blue)"
                   strokeWidth="2.4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   d="M12 6v12"
-                  stroke="#0f2a44"
+                  stroke="var(--navy)"
                   strokeWidth="2"
                   strokeLinecap="round"
                   opacity="0.85"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DashboardLayout } from '@widgets/dashboard-layout';
@@ -11,6 +11,7 @@ export const CoursePage = () => {
   const navigate = useNavigate();
   const { getCourse, completeLesson } = useCourseStore();
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
+  const [exerciseAnswers, setExerciseAnswers] = useState<Record<string, { selected?: string; checked?: boolean }>>({});
 
   const course = courseId ? getCourse(courseId) : undefined;
 
@@ -41,9 +42,26 @@ export const CoursePage = () => {
     }
   };
 
+  const lessonExercises = useMemo(() => selectedLesson?.exercises ?? [], [selectedLesson?.exercises]);
+
+  const selectExerciseAnswer = (exerciseId: string, answer: string) => {
+    setExerciseAnswers((prev) => ({
+      ...prev,
+      [exerciseId]: { selected: answer, checked: prev[exerciseId]?.checked },
+    }));
+  };
+
+  const checkExerciseAnswer = (exerciseId: string) => {
+    setExerciseAnswers((prev) => ({
+      ...prev,
+      [exerciseId]: { selected: prev[exerciseId]?.selected, checked: true },
+    }));
+  };
+
   const handleNextLesson = () => {
     if (nextLesson) {
       setSelectedLessonId(nextLesson.id);
+      setExerciseAnswers({});
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -51,6 +69,7 @@ export const CoursePage = () => {
   const handlePrevLesson = () => {
     if (prevLesson) {
       setSelectedLessonId(prevLesson.id);
+      setExerciseAnswers({});
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -154,29 +173,71 @@ export const CoursePage = () => {
                     />
                   </div>
 
-                  {selectedLesson.exercises && selectedLesson.exercises.length > 0 && (
+                  {lessonExercises.length > 0 && (
                     <div className="lesson-exercises">
-                      <h3>Упражнения</h3>
-                      {selectedLesson.exercises.map((exercise) => (
-                        <div key={exercise.id} className="exercise-card">
+                      <h3>Практика (как в тесте)</h3>
+                      {lessonExercises.map((exercise, idx) => {
+                        const state = exerciseAnswers[exercise.id];
+                        const selected = state?.selected;
+                        const checked = state?.checked;
+                        const isCorrect = checked && selected === exercise.correctAnswer;
+                        const isWrong = checked && !!selected && selected !== exercise.correctAnswer;
+
+                        return (
+                        <div
+                          key={exercise.id}
+                          className={`exercise-card ${isCorrect ? 'correct' : ''} ${isWrong ? 'wrong' : ''}`}
+                        >
                           <div className="exercise-question">
                             <BookOpen size={20} color="var(--blue)" />
-                            <p>{exercise.question}</p>
+                            <p>
+                              <span className="exercise-number">Вопрос {idx + 1}</span>
+                              {exercise.question}
+                            </p>
                           </div>
                           {exercise.type === 'multiple-choice' && exercise.options && (
                             <div className="exercise-options">
                               {exercise.options.map((option, idx) => (
-                                <button key={idx} className="option-btn">
-                                  {option}
+                                <button
+                                  key={idx}
+                                  type="button"
+                                  className={`option-btn ${selected === option ? 'selected' : ''} ${
+                                    checked && option === exercise.correctAnswer ? 'correct' : ''
+                                  } ${checked && selected === option && option !== exercise.correctAnswer ? 'wrong' : ''}`}
+                                  onClick={() => !checked && selectExerciseAnswer(exercise.id, option)}
+                                  disabled={!!checked}
+                                >
+                                  <span className="option-letter">{String.fromCharCode(65 + idx)}</span>
+                                  <span className="option-text">{option}</span>
                                 </button>
                               ))}
                             </div>
                           )}
-                          <div className="exercise-explanation">
-                            <strong>Объяснение:</strong> {exercise.explanation}
+
+                          <div className="exercise-actions">
+                            <button
+                              type="button"
+                              className="exercise-check-btn"
+                              onClick={() => checkExerciseAnswer(exercise.id)}
+                              disabled={!selected || !!checked}
+                            >
+                              Проверить
+                            </button>
+                            {checked && (
+                              <div className={`exercise-result ${isCorrect ? 'ok' : 'bad'}`}>
+                                {isCorrect ? 'Верно' : 'Неверно'}
+                              </div>
+                            )}
                           </div>
+
+                          {checked && (
+                            <div className="exercise-explanation">
+                              <strong>Решение</strong>
+                              <div dangerouslySetInnerHTML={{ __html: exercise.explanation }} />
+                            </div>
+                          )}
                         </div>
-                      ))}
+                      )})}
                     </div>
                   )}
                 </div>

@@ -5,18 +5,6 @@ import './TeamPage.css';
 const teamMembers = [
   {
     id: 1,
-    name: 'Артур',
-    role: 'Founder',
-    achievements: [
-      'Опыт олимпиад и международных тестирований (в т.ч. PISA-2025 от имени Узбекистана)',
-      '10+ международных бизнес-форумов и стажировка в лондонском стартапе',
-      'Помогает с extracurriculars, кейсами и стратегией поступления "через проекты"',
-    ],
-    email: 'art@xproject.uz',
-    linkedin: '#',
-  },
-  {
-    id: 2,
     name: 'Мансур',
     role: 'Founder',
     achievements: [
@@ -28,7 +16,7 @@ const teamMembers = [
     linkedin: '#',
   },
   {
-    id: 3,
+    id: 2,
     name: 'Муниса',
     role: 'IELTS mentor',
     achievements: ['IELTS 8.0', 'SAT ERBW 740/800 (в 17 лет)', 'Помогает выстраивать стратегию подготовки'],
@@ -36,7 +24,7 @@ const teamMembers = [
     linkedin: '#',
   },
   {
-    id: 4,
+    id: 3,
     name: 'Жасур',
     role: 'SAT mentor',
     achievements: ['SAT 1540 overall (в 17 лет)', 'Получил accept в американские университеты', 'Фокус: математика/стратегия'],
@@ -44,7 +32,7 @@ const teamMembers = [
     linkedin: '#',
   },
   {
-    id: 5,
+    id: 4,
     name: 'Бехруз',
     role: 'IELTS mentor',
     achievements: ['IELTS 7.0 (еще в школе) + HarvardX CS50', 'Победы в олимпиадах', 'Консультировал школьников по поступлению'],
@@ -52,7 +40,7 @@ const teamMembers = [
     linkedin: '#',
   },
   {
-    id: 6,
+    id: 5,
     name: 'Диана',
     role: 'Admission Consultant • IELTS Support',
     achievements: ['Учеба в Великобритании: Hillcrest Royal School', 'IELTS 7.0', 'Помогает с поступлением в Европу'],
@@ -75,7 +63,7 @@ export const TeamPage = () => {
           <div>
             <h2>Команда</h2>
             <p>
-              Founder-ы, консультанты и менторы XProjectUZ. Коротко о главном — и место под фото
+              Founder-ы, консультанты и менторы Admisstion triper. Коротко о главном — и место под фото
               каждого.
             </p>
           </div>

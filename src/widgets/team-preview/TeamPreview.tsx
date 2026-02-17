@@ -15,7 +15,7 @@ export const TeamPreview = () => {
           <div>
             <h2>Команда</h2>
             <p>
-              Founder-ы, консультанты и менторы XProjectUZ. Коротко о главном — и место под фото
+              Founder-ы, консультанты и менторы Admisstion triper. Коротко о главном — и место под фото
               каждого.
             </p>
           </div>

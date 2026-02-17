@@ -32,11 +32,11 @@ export const Header = () => {
         <div className="nav-inner">
           <Link to="/" className="brand">
             <div className="logo-badge" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="img" aria-label="XProject logo">
+              <svg viewBox="0 0 64 64" role="img" aria-label="Admisstion triper logo">
                 <defs>
                   <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#1e66b3" stopOpacity={0.95} />
-                    <stop offset="1" stopColor="#2f84da" stopOpacity={0.85} />
+                    <stop offset="0" stopColor="var(--blue)" stopOpacity={0.95} />
+                    <stop offset="1" stopColor="var(--blue2)" stopOpacity={0.85} />
                   </linearGradient>
                 </defs>
                 <circle cx="32" cy="32" r="29" fill="none" stroke="url(#g)" strokeWidth="4" />
@@ -50,7 +50,7 @@ export const Header = () => {
                 <path
                   d="M18 26h28"
                   fill="none"
-                  stroke="#0f2a44"
+                  stroke="var(--navy)"
                   strokeWidth="4"
                   strokeLinecap="round"
                   opacity={0.9}
@@ -58,7 +58,7 @@ export const Header = () => {
                 <path
                   d="M22 46l10-14 10 14"
                   fill="none"
-                  stroke="#0f2a44"
+                  stroke="var(--navy)"
                   strokeWidth="4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -66,7 +66,7 @@ export const Header = () => {
               </svg>
             </div>
             <div className="brand-title">
-              <b>XProjectUZ</b>
+              <b>Admisstion triper</b>
               <span>образовательная платформа</span>
             </div>
           </Link>
@@ -77,6 +77,7 @@ export const Header = () => {
             <Link to="/team">{t('nav.team')}</Link>
             <Link to="/contact">{t('nav.contact')}</Link>
             <Link to="/pricing">{t('nav.pricing')}</Link>
+            <Link to="/qr">QR</Link>
           </nav>
 
           <div className="nav-cta">
@@ -137,7 +138,7 @@ export const Header = () => {
                       <circle cx="32" cy="32" r="29" fill="none" stroke="#1e66b3" strokeWidth="4" />
                     </svg>
                   </span>
-                  <span>XProjectUZ</span>
+                  <span>Admisstion triper</span>
                 </div>
                 <button
                   className="drawer-close"
@@ -147,7 +148,7 @@ export const Header = () => {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M6 6l12 12M18 6L6 18"
-                      stroke="#0f2a44"
+                      stroke="var(--navy)"
                       strokeWidth="2.6"
                       strokeLinecap="round"
                     />

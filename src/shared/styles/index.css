@@ -13,13 +13,14 @@
 
   /* Акцентные цвета - более яркие */
   --navy: #1e293b;
-  --blue: #3b82f6;
-  --blue2: #60a5fa;
-  --blue-light: #dbeafe;
-  --blue-dark: #1e40af;
+  /* Brand accent (burgundy) */
+  --blue: #7b1b3a;
+  --blue2: #a83a5a;
+  --blue-light: #f6d7df;
+  --blue-dark: #4f0d24;
 
   /* Дополнительные цвета */
-  --purple: #8b5cf6;
+  --purple: #8a2f4c;
   --green: #10b981;
   --orange: #f59e0b;
   --red: #ef4444;
@@ -54,10 +55,10 @@
   --muted: #94a3b8;
 
   --navy: #cbd5e1;
-  --blue: #60a5fa;
-  --blue2: #3b82f6;
-  --blue-light: #1e3a5f;
-  --blue-dark: #93c5fd;
+  --blue: #d36a87;
+  --blue2: #b84a68;
+  --blue-light: #2a121a;
+  --blue-dark: #f3a6ba;
 
   --card: #1e293b;
   --card-hover: #334155;

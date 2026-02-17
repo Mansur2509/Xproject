@@ -7,11 +7,11 @@ const services = [
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path
           d="M4 19V6a2 2 0 0 1 2-2h11a3 3 0 0 1 3 3v12"
-          stroke="#0f2a44"
+          stroke="var(--navy)"
           strokeWidth="2"
           opacity="0.9"
         />
-        <path d="M6 18h13" stroke="#1e66b3" strokeWidth="2.4" strokeLinecap="round" />
+        <path d="M6 18h13" stroke="var(--blue)" strokeWidth="2.4" strokeLinecap="round" />
       </svg>
     ),
     title: 'IELTS: тренинги и поддержка',
@@ -22,7 +22,7 @@ const services = [
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path
           d="M3 12h6l3 8 4-16 2 8h3"
-          stroke="#1e66b3"
+          stroke="var(--blue)"
           strokeWidth="2.4"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -37,14 +37,14 @@ const services = [
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path
           d="M4 7h16M4 12h10M4 17h16"
-          stroke="#0f2a44"
+          stroke="var(--navy)"
           strokeWidth="2"
           strokeLinecap="round"
           opacity="0.9"
         />
         <path
           d="M16 10l2 2 3-3"
-          stroke="#1e66b3"
+          stroke="var(--blue)"
           strokeWidth="2.4"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -59,13 +59,13 @@ const services = [
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path
           d="M12 2l8 4v6c0 5.5-8 10-8 10S4 17.5 4 12V6l8-4z"
-          stroke="#0f2a44"
+          stroke="var(--navy)"
           strokeWidth="2"
           opacity="0.9"
         />
         <path
           d="M8.5 12.2l2.4 2.4 4.8-5"
-          stroke="#1e66b3"
+          stroke="var(--blue)"
           strokeWidth="2.4"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -78,8 +78,8 @@ const services = [
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M7 7h10v10H7z" stroke="#0f2a44" strokeWidth="2" opacity="0.9" />
-        <path d="M9 9h6v6H9z" fill="rgba(30,102,179,.18)" stroke="#1e66b3" strokeWidth="2" />
+        <path d="M7 7h10v10H7z" stroke="var(--navy)" strokeWidth="2" opacity="0.9" />
+        <path d="M9 9h6v6H9z" fill="rgba(123, 27, 58, 0.18)" stroke="var(--blue)" strokeWidth="2" />
       </svg>
     ),
     title: 'Проектная практика',
@@ -88,10 +88,10 @@ const services = [
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M4 6h16v12H4z" stroke="#0f2a44" strokeWidth="2" opacity="0.9" />
+        <path d="M4 6h16v12H4z" stroke="var(--navy)" strokeWidth="2" opacity="0.9" />
         <path
           d="M7 9h10M7 12h8M7 15h6"
-          stroke="#1e66b3"
+          stroke="var(--blue)"
           strokeWidth="2.4"
           strokeLinecap="round"
         />
@@ -116,7 +116,7 @@ export const ServicesSection = () => {
           <div>
             <h2>Что мы делаем?</h2>
             <p>
-              Онлайн-форматы XProjectUZ: экзамены, поступление, документы и практика — с фидбеком и
+              Онлайн-форматы Admisstion triper: экзамены, поступление, документы и практика — с фидбеком и
               системой.
             </p>
           </div>

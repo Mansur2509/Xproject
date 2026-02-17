@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Check, Star, Zap, Crown } from 'lucide-react';
 import { useRegistrationsStore } from '@entities/user/model/registrationsStore';
 import { useUserStore } from '@entities/user/model/userStore';
+import { Modal } from '@shared/ui';
 import './PricingPage.css';
 
 const plans = [
@@ -65,11 +66,68 @@ export const PricingPage = () => {
   const { isAuthenticated, user } = useUserStore();
   const [showForm, setShowForm] = useState(false);
 
+  const closePricingModal = (reason: string) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c190d3c4-f46f-419c-b704-aa80ab68f928', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        runId: 'pre-fix',
+        hypothesisId: 'B',
+        location: 'src/pages/pricing/PricingPage.tsx:closePricingModal',
+        message: 'Pricing registration modal close',
+        data: {
+          reason,
+          selectedPlan,
+          bodyOverflow: getComputedStyle(document.body).overflow,
+          path: window.location.pathname,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+    setShowForm(false);
+    setSelectedPlan(null);
+  };
+
   const handleSelectPlan = (planId: string) => {
     if (!isAuthenticated) {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c190d3c4-f46f-419c-b704-aa80ab68f928', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          runId: 'pre-fix',
+          hypothesisId: 'D',
+          location: 'src/pages/pricing/PricingPage.tsx:handleSelectPlan',
+          message: 'Select plan while unauthenticated -> redirect to login',
+          data: { planId, isAuthenticated },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
       window.location.href = '/auth/login';
       return;
     }
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c190d3c4-f46f-419c-b704-aa80ab68f928', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        runId: 'pre-fix',
+        hypothesisId: 'B',
+        location: 'src/pages/pricing/PricingPage.tsx:handleSelectPlan',
+        message: 'Pricing registration modal open',
+        data: {
+          planId,
+          bodyOverflow: getComputedStyle(document.body).overflow,
+          viewport: { w: window.innerWidth, h: window.innerHeight },
+          path: window.location.pathname,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
     setSelectedPlan(planId);
     setShowForm(true);
   };
@@ -88,8 +146,7 @@ export const PricingPage = () => {
     });
 
     alert('Регистрация успешно сохранена!');
-    setShowForm(false);
-    setSelectedPlan(null);
+    closePricingModal('submit_success');
   };
 
   return (
@@ -151,48 +208,39 @@ export const PricingPage = () => {
           })}
         </div>
 
-        {showForm && selectedPlan && (
-          <motion.div
-            className="registration-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            onClick={() => setShowForm(false)}
-          >
-            <motion.div
-              className="modal-content"
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3>Регистрация на тариф</h3>
-              <form onSubmit={handleRegister}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Ваше имя"
-                  defaultValue={user?.name || ''}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  defaultValue={user?.email || ''}
-                  required
-                />
-                <input type="tel" name="phone" placeholder="Телефон" required />
-                <div className="modal-actions">
-                  <button type="submit" className="btn primary">
-                    Зарегистрироваться
-                  </button>
-                  <button type="button" className="btn" onClick={() => setShowForm(false)}>
-                    Отмена
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
+        <Modal
+          open={!!showForm && !!selectedPlan}
+          title="Регистрация на тариф"
+          onClose={(reason) => closePricingModal(`modal_${reason}`)}
+        >
+          {showForm && selectedPlan && (
+            <form onSubmit={handleRegister}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Ваше имя"
+                defaultValue={user?.name || ''}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                defaultValue={user?.email || ''}
+                required
+              />
+              <input type="tel" name="phone" placeholder="Телефон" required />
+              <div className="modal-actions">
+                <button type="submit" className="btn primary">
+                  Зарегистрироваться
+                </button>
+                <button type="button" className="btn" onClick={() => closePricingModal('cancel_button')}>
+                  Отмена
+                </button>
+              </div>
+            </form>
+          )}
+        </Modal>
       </div>
     </section>
   );

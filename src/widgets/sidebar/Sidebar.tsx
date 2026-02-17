@@ -59,14 +59,14 @@ export const Sidebar = () => {
                 <circle cx="32" cy="32" r="29" fill="none" stroke="url(#grad)" strokeWidth="4" />
                 <defs>
                   <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#3b82f6" />
-                    <stop offset="1" stopColor="#60a5fa" />
+                    <stop offset="0" stopColor="var(--blue)" />
+                    <stop offset="1" stopColor="var(--blue2)" />
                   </linearGradient>
                 </defs>
               </svg>
             </div>
             <div>
-              <b>XProjectUZ</b>
+              <b>Admisstion triper</b>
               <span>Образование</span>
             </div>
           </motion.div>

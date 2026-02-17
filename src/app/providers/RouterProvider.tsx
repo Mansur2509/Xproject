@@ -5,6 +5,7 @@ import { EventsPage } from '@pages/events';
 import { TeamPage } from '@pages/team';
 import { ContactPage } from '@pages/contact';
 import { PricingPage } from '@pages/pricing';
+import { QrPage } from '@pages/qr';
 import { LoginPage } from '@pages/auth/login';
 import { RegisterPage } from '@pages/auth/register';
 import { DashboardPage } from '@pages/dashboard';
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: 'pricing',
         element: <PricingPage />,
+      },
+      {
+        path: 'qr',
+        element: <QrPage />,
       },
       {
         path: 'auth/login',

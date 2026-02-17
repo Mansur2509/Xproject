@@ -45,7 +45,7 @@ export const LoginPage = () => {
       >
         <div className="auth-header">
           <h1>Вход</h1>
-          <p>Войдите в свой аккаунт XProjectUZ</p>
+          <p>Войдите в свой аккаунт Admisstion triper</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">

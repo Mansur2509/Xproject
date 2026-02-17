@@ -69,7 +69,7 @@ export const RegisterPage = () => {
       >
         <div className="auth-header">
           <h1>Регистрация</h1>
-          <p>Создайте аккаунт в XProjectUZ</p>
+          <p>Создайте аккаунт в Admisstion triper</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">

@@ -371,11 +371,114 @@
   color: var(--navy);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
 }
 
 .option-btn:hover {
   border-color: var(--blue);
   background: var(--blue-light);
+}
+
+.option-btn.selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(123, 27, 58, 0.12);
+}
+
+.option-btn:disabled {
+  cursor: default;
+}
+
+.option-btn.correct {
+  border-color: var(--green);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.option-btn.wrong {
+  border-color: var(--red);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.option-letter {
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: var(--line);
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.option-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.exercise-number {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(123, 27, 58, 0.1);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.exercise-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.exercise-check-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(123, 27, 58, 0.35);
+  background: rgba(123, 27, 58, 0.08);
+  color: var(--navy);
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.exercise-check-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(123, 27, 58, 0.55);
+}
+
+.exercise-check-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.exercise-result {
+  font-weight: 900;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+.exercise-result.ok {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--green);
+}
+
+.exercise-result.bad {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--red);
 }
 
 .exercise-explanation {
@@ -393,6 +496,14 @@
   color: var(--green);
   display: block;
   margin-bottom: 8px;
+}
+
+.exercise-card.correct {
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.exercise-card.wrong {
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
 .lesson-navigation {

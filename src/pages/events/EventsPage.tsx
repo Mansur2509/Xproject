@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { EventBadge, type EventType } from '@widgets/event-badges';
 import { useRegistrationsStore } from '@entities/user/model/registrationsStore';
 import { useUserStore } from '@entities/user/model/userStore';
+import { Modal } from '@shared/ui';
 import './EventsPage.css';
 
 const events = [
@@ -43,11 +44,66 @@ export const EventsPage = () => {
   const { addRegistration } = useRegistrationsStore();
   const { isAuthenticated, user } = useUserStore();
 
+  const closeRegistrationModal = (reason: string) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c190d3c4-f46f-419c-b704-aa80ab68f928', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        runId: 'pre-fix',
+        hypothesisId: 'B',
+        location: 'src/pages/events/EventsPage.tsx:closeRegistrationModal',
+        message: 'Events registration modal close',
+        data: {
+          reason,
+          bodyOverflow: getComputedStyle(document.body).overflow,
+          path: window.location.pathname,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+    setShowRegistrationForm(null);
+  };
+
   const handleRegister = (eventId: number) => {
     if (!isAuthenticated) {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c190d3c4-f46f-419c-b704-aa80ab68f928', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          runId: 'pre-fix',
+          hypothesisId: 'D',
+          location: 'src/pages/events/EventsPage.tsx:handleRegister',
+          message: 'Register click while unauthenticated -> redirect to login',
+          data: { eventId, isAuthenticated },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
       window.location.href = '/auth/login';
       return;
     }
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c190d3c4-f46f-419c-b704-aa80ab68f928', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        runId: 'pre-fix',
+        hypothesisId: 'B',
+        location: 'src/pages/events/EventsPage.tsx:handleRegister',
+        message: 'Events registration modal open',
+        data: {
+          eventId,
+          bodyOverflow: getComputedStyle(document.body).overflow,
+          viewport: { w: window.innerWidth, h: window.innerHeight },
+          path: window.location.pathname,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
     setShowRegistrationForm(eventId);
   };
 
@@ -66,7 +122,7 @@ export const EventsPage = () => {
       });
 
       alert('Регистрация успешно сохранена в localStorage!');
-      setShowRegistrationForm(null);
+      closeRegistrationModal('submit_success');
     }
   };
 
@@ -83,7 +139,7 @@ export const EventsPage = () => {
           <div>
             <h2>Наши ивенты</h2>
             <p>
-              Место под фото и краткое описание того, что XProjectUZ уже сделал. Даты и цифры можно
+                Место под фото и краткое описание того, что Admisstion triper уже сделал. Даты и цифры можно
               добавить позже.
             </p>
           </div>
@@ -104,48 +160,39 @@ export const EventsPage = () => {
           ))}
         </div>
 
-        {showRegistrationForm && (
-          <motion.div
-            className="registration-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            onClick={() => setShowRegistrationForm(null)}
-          >
-            <motion.div
-              className="modal-content"
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3>Регистрация на событие</h3>
-              <form onSubmit={(e) => handleSubmitRegistration(e, showRegistrationForm)}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Ваше имя"
-                  defaultValue={user?.name || ''}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  defaultValue={user?.email || ''}
-                  required
-                />
-                <input type="tel" name="phone" placeholder="Телефон" required />
-                <div className="modal-actions">
-                  <button type="submit" className="btn primary">
-                    Зарегистрироваться
-                  </button>
-                  <button type="button" className="btn" onClick={() => setShowRegistrationForm(null)}>
-                    Отмена
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
+        <Modal
+          open={!!showRegistrationForm}
+          title="Регистрация на событие"
+          onClose={(reason) => closeRegistrationModal(`modal_${reason}`)}
+        >
+          {showRegistrationForm && (
+            <form onSubmit={(e) => handleSubmitRegistration(e, showRegistrationForm)}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Ваше имя"
+                defaultValue={user?.name || ''}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                defaultValue={user?.email || ''}
+                required
+              />
+              <input type="tel" name="phone" placeholder="Телефон" required />
+              <div className="modal-actions">
+                <button type="submit" className="btn primary">
+                  Зарегистрироваться
+                </button>
+                <button type="button" className="btn" onClick={() => closeRegistrationModal('cancel_button')}>
+                  Отмена
+                </button>
+              </div>
+            </form>
+          )}
+        </Modal>
 
         <motion.div
           className="events-cta"
